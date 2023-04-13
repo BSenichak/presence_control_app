@@ -1,0 +1,7 @@
+@use "./clearStyles.modeule.scss" as *;
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    min-height: 100vh;
+}

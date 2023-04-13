@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import PropTypes from 'prop-types'
+import React from 'react'
+import { connect } from 'react-redux'
+import { Route, Routes } from 'react-router-dom'
+import LoginPage from "./components/auth/LoginPage/LoginPage"
+import style from "./style/generalStyle.module.scss"
 
-function App() {
+export const App = (props) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={style.wrapper}>
+      <Routes>
+        <Route path='/' element={<LoginPage/>}/>
+      </Routes>
     </div>
-  );
+  )
 }
 
-export default App;
+App.propTypes = {
+  first: PropTypes.any
+}
+
+const mapStateToProps = (state) => ({
+
+})
+
+const mapDispatchToProps = dispatch => {
+  return {
+    
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
