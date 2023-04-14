@@ -1,7 +1,16 @@
 .wrapper {
     grid-column: 1/-1;
+    display: grid;
+    grid-template-columns: 1fr repeat(2, minmax(20rem, 1fr)) 1fr;
+    gap: 3rem;
+    align-items: center;
     form {
         display: flex;
         flex-direction: column;
+        grid-column: 3;
+        gap: 1rem;
+    }
+    .logo {
+        grid-column: 2;
     }
 }

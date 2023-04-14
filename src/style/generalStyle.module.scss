@@ -1,5 +1,9 @@
 @use "./clearStyles.modeule.scss" as *;
 
+@if var(--theme) == "light" {
+    @use "_lightTheme.scss"
+}
+
 .wrapper {
     display: grid;
     grid-template-columns: repeat(12, 1fr);

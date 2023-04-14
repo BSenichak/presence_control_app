@@ -7,7 +7,7 @@ import style from "./style/generalStyle.module.scss"
 
 export const App = (props) => {
   return (
-    <div className={style.wrapper}>
+    <div className={style.wrapper} style={{"--theme": "dark"}}>
       <Routes>
         <Route path='/' element={<LoginPage/>}/>
       </Routes>

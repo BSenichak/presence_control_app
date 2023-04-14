@@ -1,17 +1,30 @@
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { TextField, Button, Alert, Snackbar } from "@mui/material";
 import Slide from "@mui/material/Slide";
 import style from "./LoginPage.module.scss";
 import { login } from "../../../store/auth/login/loginActions";
+import CircularProgress from '@mui/material/CircularProgress';
 
 export const LoginPage = (props) => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (props.error) {
+      setOpen(true);
+    }
+  }, [props.error]);
+
+  const noficationClose = () => {
+    setOpen(false);
+  };
 
   return (
     <div className={style.wrapper}>
+      <img src="/Images/login.svg" alt="Login" className={style.logo}/>
       <form>
         <TextField
           id={style.login}
@@ -39,14 +52,19 @@ export const LoginPage = (props) => {
         </Button>
       </form>
       {JSON.stringify(props.credential)}
-      {props.loading && "ddd"}
+      {props.loading && <CircularProgress />}
       <Snackbar
-        open={props.error}
-        autoHideDuration={1000}
+        open={open}
+        autoHideDuration={6000}
+        onClose={noficationClose}
         TransitionComponent={Slide}
       >
-        <Alert severity="error" sx={{ width: "100%" }}>
-          Не вірний логін або пароль
+        <Alert
+          onClose={noficationClose}
+          severity="error"
+          sx={{ width: "100%" }}
+        >
+          Не вірно введенна пошта або пароль
         </Alert>
       </Snackbar>
     </div>
@@ -63,7 +81,7 @@ LoginPage.propTypes = {
 const mapStateToProps = (state) => ({
   credential: state.auth.login.credential,
   login: state.auth.login.loading,
-  error: state.auth.login.error.code === "auth/user-not-found",
+  error: state.auth.login.error.code === "auth/user-not-found" || state.auth.login.error.code === "auth/wrong-password",
 });
 
 const mapDispatchToProps = (dispatch) => {
