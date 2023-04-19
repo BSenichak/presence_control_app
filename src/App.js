@@ -10,11 +10,13 @@ import { Footer } from "./components/Footer/Footer";
 import { ThemeProvider } from "@emotion/react";
 import { lightTheme } from "./style/theme";
 import { darkTheme } from "./style/theme";
+import { updateAuthData } from "./store/auth/updateData/updateDateAction";
 
 export const App = (props) => {
   const [render, setRender] = useState(true);
   if (render) {
     props.loadTheme();
+    props.loadUserData();
     setRender(false);
   }
   useEffect(() => {
@@ -29,19 +31,20 @@ export const App = (props) => {
 
   return (
     <ThemeProvider theme={props.theme === "dark" ? darkTheme : lightTheme}>
-    <div className={style.wrapper}>
-      <Header />
-      <Routes>
-        <Route path="/" element={<LoginPage />} />
-      </Routes>
-      <Footer/>
-    </div>
+      <div className={style.wrapper}>
+        <Header />
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+        </Routes>
+        <Footer />
+      </div>
     </ThemeProvider>
   );
 };
 
 App.propTypes = {
   loadTheme: PropTypes.func,
+  loadUserData: PropTypes.func,
   theme: PropTypes.string,
 };
 
@@ -54,6 +57,7 @@ const mapDispatchToProps = (dispatch) => {
     loadTheme: () => {
       dispatch(loadTheme());
     },
+    loadUserData: () => dispatch(updateAuthData()),
   };
 };
 

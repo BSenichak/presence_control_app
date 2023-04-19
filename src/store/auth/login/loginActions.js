@@ -1,5 +1,6 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../plagins/firebase";
+import { updateAuthData } from "../updateData/updateDateAction";
 
 export const START_LOGIN = "START_LOGIN";
 export const ERROR_LOGIN = "ERROR_LOGIN";
@@ -9,7 +10,10 @@ export const login = (login, password) => {
   return (dispatch) => {
     dispatch(startLogin());
     signInWithEmailAndPassword(auth, login, password)
-      .then((credential) => dispatch(successLogin(credential)))
+      .then((credential) => {
+        dispatch(successLogin(credential));
+        dispatch(updateAuthData())
+      })
       .catch((error) => dispatch(errorLogin(error)));
   };
 };

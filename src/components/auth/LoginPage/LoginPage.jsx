@@ -51,8 +51,7 @@ export const LoginPage = (props) => {
           Увійти
         </Button>
       </form>
-      {JSON.stringify(props.credential)}
-      {props.loading && <CircularProgress />}
+      {props.loading && <div className={style.loader}><CircularProgress /></div>}
       <Snackbar
         open={open}
         autoHideDuration={6000}
@@ -72,15 +71,13 @@ export const LoginPage = (props) => {
 };
 
 LoginPage.propTypes = {
-  credential: PropTypes.object,
   loading: PropTypes.bool,
   login: PropTypes.func,
   error: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({
-  credential: state.auth.login.credential,
-  login: state.auth.login.loading,
+  loading: state.auth.login.loading,
   error: state.auth.login.error.code === "auth/user-not-found" || state.auth.login.error.code === "auth/wrong-password",
 });
 

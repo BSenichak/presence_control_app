@@ -2,7 +2,7 @@ import { ERROR_LOGIN, START_LOGIN, SUCCESS_LOGIN } from "./loginActions";
 
 const initalState = {
   loading: false,
-  credential: null,
+  isAutorized: false,
   error: {
     code: null,
   },
@@ -17,20 +17,20 @@ export const loginReducer = (state = initalState, action) => {
         error: {
           code: null,
         },
-        credential: null,
+        isAutorized: false,
       };
     case ERROR_LOGIN:
       return {
         ...state,
         loading: false,
         error: action.payload,
-        credential: null,
+        isAutorized: false,
       };
     case SUCCESS_LOGIN:
       return {
         ...state,
         loading: false,
-        credential: action.payload,
+        isAutorized: !!action.payload,
         error: {
           code: null,
         },
