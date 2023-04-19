@@ -5,6 +5,8 @@ import { Route, Routes } from "react-router-dom";
 import LoginPage from "./components/auth/LoginPage/LoginPage";
 import style from "./style/app.module.scss";
 import { loadTheme } from "./store/theme/themeActions";
+import Header from "./components/Header/Header";
+import { Footer } from "./components/Footer/Footer";
 
 export const App = (props) => {
   const [render, setRender] = useState(true);
@@ -24,9 +26,11 @@ export const App = (props) => {
 
   return (
     <div className={style.wrapper}>
+      <Header />
       <Routes>
         <Route path="/" element={<LoginPage />} />
       </Routes>
+      <Footer/>
     </div>
   );
 };

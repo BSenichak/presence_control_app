@@ -13,6 +13,7 @@ export const themeReducer = (state = initalState, action) => {
         theme: action.payload,
       };
     case TOGGLE_THEME:
+      window.localStorage.setItem("theme", state.theme === "light" ? "dark" : "light")
       return {
         ...state,
         theme: state.theme === "light" ? "dark" : "light",
