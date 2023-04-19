@@ -7,6 +7,9 @@ import style from "./style/app.module.scss";
 import { loadTheme } from "./store/theme/themeActions";
 import Header from "./components/Header/Header";
 import { Footer } from "./components/Footer/Footer";
+import { ThemeProvider } from "@emotion/react";
+import { lightTheme } from "./style/theme";
+import { darkTheme } from "./style/theme";
 
 export const App = (props) => {
   const [render, setRender] = useState(true);
@@ -25,6 +28,7 @@ export const App = (props) => {
   }, [props.theme]);
 
   return (
+    <ThemeProvider theme={props.theme === "dark" ? darkTheme : lightTheme}>
     <div className={style.wrapper}>
       <Header />
       <Routes>
@@ -32,6 +36,7 @@ export const App = (props) => {
       </Routes>
       <Footer/>
     </div>
+    </ThemeProvider>
   );
 };
 
