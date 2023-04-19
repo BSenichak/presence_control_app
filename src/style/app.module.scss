@@ -1,0 +1,75 @@
+@use "./clearStyles.modeule.scss" as *;
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--primary-text);
+}
+
+.lightTheme{
+  --bg: #fff;
+  --bg-paper: #fff;
+  --primary-text: rgba(0, 0, 0, 0.87);
+  --secondary-text: rgba(0, 0, 0, 0.6);
+  --disabled-text: rgba(0, 0, 0, 0.6);
+  --primary-main: #ffa726;
+  --primary-light: rgba(255,184,81);
+  --primary-dark: rgba(178,116,26);
+  --primary-contrast-text: rgba(0,0,0,0.87);
+  --secondary-main: #d50000;
+  --secondary-light: rgba(221,51,51);
+  --secondary-dark: rgba(149,0,0);
+  --secondary-contrast-text: #fff;
+  --error-main: #d32f2f;
+  --error-light: #ef5350;
+  --error-dark: #c62828;
+  --error-contrast-text: #fff;
+  --warning-main: #ed6c02;
+  --warning-light: #ff9800;
+  --warning-dark: #e65100;
+  --warning-contrast-text: #fff;
+  --info-main: #0288d1;
+  --info-light: #03a9f4;
+  --info-dark: #01579b;
+  --info-contrast-text: #fff;
+  --success-main: #2e7d32;
+  --success-light: #4caf50;
+  --success-dark: #1b5e20;
+  --success-contrast-text: #fff;
+  --divider: rgba(0, 0, 0, 0.12);
+}
+
+.darkTheme{
+  --bg: #121212;
+  --bg-paper: #121212;
+  --primary-text: #fff;
+  --secondary-text: rgba(255, 255, 255, 0.7);
+  --disabled-text: rgba(255, 255, 255, 0.5);
+  --primary-main: #ffa726;
+  --primary-light: rgba(255,184,81);
+  --primary-dark: rgba(178,116,26);
+  --primary-contrast-text: rgba(0,0,0,0.87);
+  --secondary-main: #d50000;
+  --secondary-light: rgba(221,51,51);
+  --secondary-dark: rgba(149,0,0);
+  --secondary-contrast-text: #fff;
+  --error-main: #f44336;
+  --error-light: #e57373;
+  --error-dark: #d32f2f;
+  --error-contrast-text: #fff;
+  --warning-main: #ffa726;
+  --warning-light: #ffb74d;
+  --warning-dark: #f57c00;
+  --warning-contrast-text: rgba(0, 0, 0, 0.87);
+  --info-main: #29b6f6;
+  --info-light: #4fc3f7;
+  --info-dark: #0288d1;
+  --info-contrast-text: rgba(0, 0, 0, 0.87);
+  --success-main: #66bb6a;
+  --success-light: #81c784;
+  --success-dark: #388e3c;
+  --success-contrast-text: rgba(0, 0, 0, 0.87);
+  --divider: rgba(255, 255, 255, 0.12);
+}
