@@ -23,6 +23,7 @@ import { useNavigate } from "react-router-dom";
 import { Visibility } from "@mui/icons-material";
 import { VisibilityOff } from "@mui/icons-material";
 import LinearProgress from "@mui/material/LinearProgress";
+import { register } from "../../../store/auth/register/registerActions";
 
 export const RegisterPage = (props) => {
   const [name, setName] = useState("");
@@ -103,8 +104,7 @@ export const RegisterPage = (props) => {
       setOpen(true);
       return null;
     }
-    setErrorText("ok");
-    setOpen(true);
+    props.register(email, password, name, secondName, root);
   };
 
   return (
@@ -267,14 +267,15 @@ RegisterPage.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  loading: state.auth.login.loading,
-  error: state.auth.login.error.code !== null,
+  loading: state.auth.register.loading,
+  error: state.auth.register.error !== null,
   isLogined: !!state.auth.updateData.credencial.uid,
 });
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    register: () => console.log("first"),
+    register: (email, password, firstName, secondName, root) =>
+      dispatch(register(email, password, firstName, secondName, root)),
   };
 };
 
