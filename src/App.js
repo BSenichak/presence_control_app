@@ -12,9 +12,12 @@ import { lightTheme } from "./style/theme";
 import { darkTheme } from "./style/theme";
 import { updateAuthData } from "./store/auth/updateData/updateDateAction";
 import NotFound from "./components/NotFound/NotFound";
+import Tab from "./components/Tab/Tab";
+
 
 export const App = (props) => {
   const [render, setRender] = useState(true);
+
   if (render) {
     props.loadTheme();
     props.loadUserData();
@@ -38,6 +41,7 @@ export const App = (props) => {
           <Route path="/login" element={<LoginPage />} />
           <Route path='/*' element={<NotFound/>}/>
         </Routes>
+        <Tab/>
         <Footer />
       </div>
     </ThemeProvider>
