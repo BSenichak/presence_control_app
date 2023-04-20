@@ -40,3 +40,12 @@ export const successUpdateAuthData = (data) => {
         payload: data
     }
 }
+
+
+export const CLEAR_CREDENCIAL = "CLEAR_CREDENCIAL";
+
+export const clearCredencial = () => {
+    return {
+        type: CLEAR_CREDENCIAL
+    }
+}

@@ -1,4 +1,4 @@
-import { ERROR_UPDATE_AUTH_DATA, START_UPDATE_AUTH_DATA, SUCCESS_UPDATE_AUTH_DATA } from "./updateDateAction"
+import { CLEAR_CREDENCIAL, ERROR_UPDATE_AUTH_DATA, START_UPDATE_AUTH_DATA, SUCCESS_UPDATE_AUTH_DATA } from "./updateDateAction"
 
 const initalState = {
     credencial: {},
@@ -28,6 +28,14 @@ export const updateDataReducer = (state = initalState, action) => {
                 error: null,
                 credencial: action.payload[0],
                 userData: action.payload[1],
+            }
+        case CLEAR_CREDENCIAL:
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                credencial: {},
+                userData: {},
             }
         default:
             return state

@@ -17,6 +17,8 @@ import NoAccountsIcon from "@mui/icons-material/NoAccounts";
 import LoginIcon from "@mui/icons-material/Login";
 import CreateIcon from "@mui/icons-material/Create";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { logout } from "../../store/auth/logout/logoutActions";
+import { Link } from "react-router-dom";
 
 export const Tab = (props) => {
   return (
@@ -42,7 +44,7 @@ export const Tab = (props) => {
             )}
           </ListItem>
           {props.isLogined ? (
-            <ListItemButton>
+            <ListItemButton onClick={() => props.logout()}>
               <ListItemIcon aria-label="LogoutIcon">
                 <LogoutIcon />
               </ListItemIcon>
@@ -50,18 +52,22 @@ export const Tab = (props) => {
             </ListItemButton>
           ) : (
             <>
-              <ListItemButton>
-                <ListItemIcon aria-label="LoginIcon">
-                  <LoginIcon />
-                </ListItemIcon>
-                <ListItemText primary="Увійти" />
-              </ListItemButton>
-              <ListItemButton>
-                <ListItemIcon aria-label="CreateIcon">
-                  <CreateIcon />
-                </ListItemIcon>
-                <ListItemText primary="Зареєструватись" />
-              </ListItemButton>
+              <Link to={"/login"} onClick={() => props.closeTab()}>
+                <ListItemButton>
+                  <ListItemIcon aria-label="LoginIcon">
+                    <LoginIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Увійти" />
+                </ListItemButton>
+              </Link>
+              <Link to={"/registration"} onClick={() => props.closeTab()}>
+                <ListItemButton>
+                  <ListItemIcon aria-label="CreateIcon">
+                    <CreateIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Зареєструватись" />
+                </ListItemButton>
+              </Link>
             </>
           )}
         </List>
@@ -72,16 +78,20 @@ export const Tab = (props) => {
 
 Tab.propTypes = {
   isOpen: PropTypes.bool,
+  closeTab: PropTypes.func,
+  isLogined: PropTypes.bool,
+  logout: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
   isOpen: state.tab.tabState,
-  isLogined: !!state.auth.updateData.credencial,
+  isLogined: !!state.auth.updateData.credencial.uid,
 });
 
 const mapDispatchToProps = (dispatch) => {
   return {
     closeTab: () => dispatch(closeTab()),
+    logout: () => dispatch(logout()),
   };
 };
 
