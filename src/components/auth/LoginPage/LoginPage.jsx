@@ -6,17 +6,26 @@ import Slide from "@mui/material/Slide";
 import style from "./LoginPage.module.scss";
 import { login } from "../../../store/auth/login/loginActions";
 import CircularProgress from '@mui/material/CircularProgress';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import { useNavigate } from "react-router-dom";
 
 export const LoginPage = (props) => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (props.error) {
       setOpen(true);
     }
-  }, [props.error]);
+    if(props.isLogined){
+      const t = setTimeout(()=>{
+        navigate("/")
+        return clearTimeout(t)
+      }, 2000)    
+    }
+  }, [props.error, navigate, props.isLogined]);
 
   const noficationClose = () => {
     setOpen(false);
@@ -52,6 +61,7 @@ export const LoginPage = (props) => {
         </Button>
       </form>
       {props.loading && <div className={style.loader}><CircularProgress /></div>}
+      {props.isLogined&&<div className={style.loader}><div className={style.thumb}><ThumbUpIcon/></div></div>}
       <Snackbar
         open={open}
         autoHideDuration={6000}
@@ -74,11 +84,13 @@ LoginPage.propTypes = {
   loading: PropTypes.bool,
   login: PropTypes.func,
   error: PropTypes.bool,
+  isLogined: PropTypes.bool
 };
 
 const mapStateToProps = (state) => ({
   loading: state.auth.login.loading,
-  error: state.auth.login.error.code === "auth/user-not-found" || state.auth.login.error.code === "auth/wrong-password",
+  error: state.auth.login.error.code !== null,
+  isLogined: !!state.auth.updateData.credencial.uid,
 });
 
 const mapDispatchToProps = (dispatch) => {
