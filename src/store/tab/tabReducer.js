@@ -1,7 +1,7 @@
 import { CLOSE_TAB, OPEN_TAB, TOGGLE_TAB } from "./tabActions"
 
 const initalState = {
-    tabState: true
+    tabState: false
 }
 
 export const tabReducer = (state = initalState, action) => {

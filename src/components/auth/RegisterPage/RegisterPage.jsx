@@ -13,15 +13,15 @@ import {
   IconButton,
 } from "@mui/material";
 import Slide from "@mui/material/Slide";
-import style from "./LoginPage.module.scss";
+import style from "./RegisterPage.module.scss";
 import { login } from "../../../store/auth/login/loginActions";
-import CircularProgress from '@mui/material/CircularProgress';
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import CircularProgress from "@mui/material/CircularProgress";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import { useNavigate } from "react-router-dom";
 import { Visibility } from "@mui/icons-material";
 import { VisibilityOff } from "@mui/icons-material";
 
-export const LoginPage = (props) => {
+export const RegisterPage = (props) => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [passwordVisibility, setPasswordVisibility] = useState(false);
@@ -32,11 +32,11 @@ export const LoginPage = (props) => {
     if (props.error) {
       setOpen(true);
     }
-    if(props.isLogined){
-      const t = setTimeout(()=>{
-        navigate("/")
-        return clearTimeout(t)
-      }, 2000)    
+    if (props.isLogined) {
+      const t = setTimeout(() => {
+        navigate("/");
+        return clearTimeout(t);
+      }, 2000);
     }
   }, [props.error, navigate, props.isLogined]);
 
@@ -46,18 +46,9 @@ export const LoginPage = (props) => {
 
   return (
     <div className={style.wrapper}>
-      <img src="/Images/login.svg" alt="Login" className={style.logo}/>
+      <img src="/Images/registration.svg" alt="Login" className={style.logo} />
       <form>
-      <FormControl variant="filled">
-          <InputLabel htmlFor="email">Email</InputLabel>
-          <Input
-            value={login}
-            onChange={(e) => setLogin(e.target.value)}
-            id="email"
-            type="email"
-          />
-        </FormControl>
-      <FormControl variant="filled">
+        <FormControl variant="filled">
           <InputLabel htmlFor="password">Password</InputLabel>
           <Input
             value={password}
@@ -80,6 +71,24 @@ export const LoginPage = (props) => {
             }
           />
         </FormControl>
+        <TextField
+          id={style.login}
+          label="Email"
+          variant="filled"
+          autoComplete="username"
+          type=""
+          onChange={(e) => setLogin(e.target.value)}
+          value={login}
+        />
+        <TextField
+          id={style.password}
+          label="Password"
+          variant="filled"
+          type="password"
+          autoComplete="current-password"
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
+        />
         <Button
           variant="contained"
           onClick={() => props.login(login, password)}
@@ -87,8 +96,18 @@ export const LoginPage = (props) => {
           Увійти
         </Button>
       </form>
-      {props.loading && <div className={style.loader}><CircularProgress /></div>}
-      {props.isLogined&&<div className={style.loader}><div className={style.thumb}><ThumbUpIcon/></div></div>}
+      {props.loading && (
+        <div className={style.loader}>
+          <CircularProgress />
+        </div>
+      )}
+      {props.isLogined && (
+        <div className={style.loader}>
+          <div className={style.thumb}>
+            <ThumbUpIcon />
+          </div>
+        </div>
+      )}
       <Snackbar
         open={open}
         autoHideDuration={6000}
@@ -107,11 +126,11 @@ export const LoginPage = (props) => {
   );
 };
 
-LoginPage.propTypes = {
+RegisterPage.propTypes = {
   loading: PropTypes.bool,
   login: PropTypes.func,
   error: PropTypes.bool,
-  isLogined: PropTypes.bool
+  isLogined: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({
@@ -126,4 +145,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterPage);

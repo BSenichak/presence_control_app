@@ -13,6 +13,7 @@ import { darkTheme } from "./style/theme";
 import { updateAuthData } from "./store/auth/updateData/updateDateAction";
 import NotFound from "./components/NotFound/NotFound";
 import Tab from "./components/Tab/Tab";
+import RegisterPage from "./components/auth/RegisterPage/RegisterPage";
 
 
 export const App = (props) => {
@@ -39,6 +40,7 @@ export const App = (props) => {
         <Header />
         <Routes>
           <Route path="/login" element={<LoginPage />} />
+          <Route path='/registration' element={<RegisterPage/>}/>
           <Route path='/*' element={<NotFound/>}/>
         </Routes>
         <Tab/>
