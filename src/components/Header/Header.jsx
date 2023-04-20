@@ -3,11 +3,12 @@ import React from "react";
 import { connect } from "react-redux";
 import style from "./Header.module.scss"
 import ThemeButton from "./ThemeButton/ThemeButton";
+import { Link } from "react-router-dom";
 
 export const Header = (props) => {
   return <header className={style.wrapper}>
     <ThemeButton/>
-    <div className={style.logo}>Контроль присутності учнів</div>
+    <Link to="/" className={style.logo}>Контроль присутності учнів</Link>
     <div className={style.btns}></div>
   </header>;
 };

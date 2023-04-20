@@ -1,0 +1,16 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: sans-serif;
+    .number{
+        font-size: 20rem;
+        line-height: 20rem;
+        font-weight: 1000;
+    }
+    .text {
+        font-size: 4rem;
+        line-height: 2rem;
+    }
+}

@@ -11,6 +11,7 @@ import { ThemeProvider } from "@emotion/react";
 import { lightTheme } from "./style/theme";
 import { darkTheme } from "./style/theme";
 import { updateAuthData } from "./store/auth/updateData/updateDateAction";
+import NotFound from "./components/NotFound/NotFound";
 
 export const App = (props) => {
   const [render, setRender] = useState(true);
@@ -34,7 +35,8 @@ export const App = (props) => {
       <div className={style.wrapper}>
         <Header />
         <Routes>
-          <Route path="/" element={<LoginPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path='/*' element={<NotFound/>}/>
         </Routes>
         <Footer />
       </div>
