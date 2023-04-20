@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import {
-  TextField,
   Button,
   Alert,
   Snackbar,
@@ -49,7 +48,7 @@ export const LoginPage = (props) => {
       <img src="/Images/login.svg" alt="Login" className={style.logo}/>
       <form>
       <FormControl variant="filled">
-          <InputLabel htmlFor="email">Email</InputLabel>
+          <InputLabel htmlFor="email">Електронна пошта</InputLabel>
           <Input
             value={login}
             onChange={(e) => setLogin(e.target.value)}
@@ -58,7 +57,7 @@ export const LoginPage = (props) => {
           />
         </FormControl>
       <FormControl variant="filled">
-          <InputLabel htmlFor="password">Password</InputLabel>
+          <InputLabel htmlFor="password">Пароль</InputLabel>
           <Input
             value={password}
             onChange={(e) => setPassword(e.target.value)}
