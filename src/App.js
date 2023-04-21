@@ -14,8 +14,7 @@ import { updateAuthData } from "./store/auth/updateData/updateDateAction";
 import NotFound from "./components/NotFound/NotFound";
 import Tab from "./components/Tab/Tab";
 import RegisterPage from "./components/auth/RegisterPage/RegisterPage";
-import { RecoveryPasswodPage } from "./components/auth/RecoveryPasswordPage/RecoveryPasswordPage";
-
+import RecoveryPasswodPage from "./components/auth/RecoveryPasswordPage/RecoveryPasswordPage";
 
 export const App = (props) => {
   const [render, setRender] = useState(true);
@@ -41,11 +40,11 @@ export const App = (props) => {
         <Header />
         <Routes>
           <Route path="/login" element={<LoginPage />} />
-          <Route path='/registration' element={<RegisterPage/>}/>
-          <Route path='/recoverypassword' element={<RecoveryPasswodPage/>}/>
-          <Route path='/*' element={<NotFound/>}/>
+          <Route path="/registration" element={<RegisterPage />} />
+          <Route path="/recoverypassword" element={<RecoveryPasswodPage />} />
+          <Route path="/*" element={<NotFound />} />
         </Routes>
-        <Tab/>
+        <Tab />
         <Footer />
       </div>
     </ThemeProvider>

@@ -13,20 +13,27 @@ import Slide from "@mui/material/Slide";
 import style from "./RecoveryPasswordPage.module.scss";
 import CircularProgress from "@mui/material/CircularProgress";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import { recoveryPassword } from "../../../store/auth/recoveryPasswod/recoveryPasswordActions";
 
 export const RecoveryPasswodPage = (props) => {
   const [login, setLogin] = useState("");
   const [open, setOpen] = useState(false);
-  const [alertText, setAlertText] = useState("");
-  const [alertType, setAlertType] = useState("");
+  const [alertText, setAlertText] = useState("error");
+  const [alertType, setAlertType] = useState("warning");
 
   useEffect(() => {
     if (props.error) {
       setOpen(true);
-      setAlertText("Користувача з даною адресою не існує")
-      setAlertType("error")
+      setAlertText("Користувача з даною адресою не існує");
+      setAlertType("error");
     }
-  }, [props.error]);
+    if (props.isDone) {
+      setOpen(true);
+      setAlertText(`Лист відновлення надіслано на ${login}`);
+      setAlertType("success");
+    }
+    // eslint-disable-next-line
+  }, [props.error, props.isDone]);
 
   const noficationClose = () => {
     setOpen(false);
@@ -38,7 +45,9 @@ export const RecoveryPasswodPage = (props) => {
         src="/Images/recoverypassword.svg"
         alt="Login"
         className={style.logo}
+        onClick={()=>props.clog()}
       />
+
       <form>
         <FormControl variant="filled">
           <InputLabel htmlFor="email">Електронна пошта</InputLabel>
@@ -49,7 +58,21 @@ export const RecoveryPasswodPage = (props) => {
             type="email"
           />
         </FormControl>
-        <Button variant="contained">Відновити пароль</Button>
+        <Button
+          variant="contained"
+          onClick={() => {
+            // eslint-disable-next-line
+            if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(login)) {
+              setOpen(true);
+              setAlertText("Не вірно введена пошта");
+              setAlertType("error");
+            } else {
+              props.resPass(login)
+            }
+          }}
+        >
+          Відновити пароль
+        </Button>
       </form>
       {props.loading && (
         <div className={style.loader}>
@@ -84,18 +107,18 @@ export const RecoveryPasswodPage = (props) => {
 RecoveryPasswodPage.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.bool,
-  isLogined: PropTypes.bool,
+  isDone: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({
-  loading: state.auth.login.loading,
-  error: state.auth.login.error.code !== null,
-  isLogined: !!state.auth.updateData.credencial.uid,
+  loading: state.auth.recovery.loading,
+  error: state.auth.recovery.error !== null,
+  isDone: state.auth.recovery.done,
 });
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    
+    resPass: (Login) => dispatch(recoveryPassword(Login)),
   };
 };
 
