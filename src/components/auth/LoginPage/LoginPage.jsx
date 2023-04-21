@@ -16,7 +16,7 @@ import style from "./LoginPage.module.scss";
 import { login } from "../../../store/auth/login/loginActions";
 import CircularProgress from '@mui/material/CircularProgress';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Visibility } from "@mui/icons-material";
 import { VisibilityOff } from "@mui/icons-material";
 
@@ -85,6 +85,9 @@ export const LoginPage = (props) => {
         >
           Увійти
         </Button>
+        <div className={style.fogotbar}>
+          <Link to={"/recoverypassword"}>Відновити пароль</Link>
+        </div>
       </form>
       {props.loading && <div className={style.loader}><CircularProgress /></div>}
       {props.isLogined&&<div className={style.loader}><div className={style.thumb}><ThumbUpIcon/></div></div>}
