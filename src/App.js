@@ -15,6 +15,7 @@ import NotFound from "./components/NotFound/NotFound";
 import Tab from "./components/Tab/Tab";
 import RegisterPage from "./components/auth/RegisterPage/RegisterPage";
 import RecoveryPasswodPage from "./components/auth/RecoveryPasswordPage/RecoveryPasswordPage";
+import Main from "./components/Main/Main";
 
 export const App = (props) => {
   const [render, setRender] = useState(true);
@@ -42,7 +43,9 @@ export const App = (props) => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/registration" element={<RegisterPage />} />
           <Route path="/recoverypassword" element={<RecoveryPasswodPage />} />
+          <Route path="/" element={<Main />} />
           <Route path="/*" element={<NotFound />} />
+
         </Routes>
         <Tab />
         <Footer />
