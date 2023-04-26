@@ -3,6 +3,7 @@
   grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
   gap: 2rem;
   padding: 2rem 10rem;
+  position: relative;
   a.item {
     // border: 1px solid black;
     height: 13rem;
@@ -13,7 +14,7 @@
     text-decoration: none;
     color: var(--primary-text);
     border-radius: 0.5rem;
-
+    overflow: hidden;
     .year {
       height: 3rem;
       width: 100%;
@@ -44,5 +45,12 @@
     height: 4rem;
     border-radius: 0.5rem;
     font-size: 1.5rem;
+  }
+  .loader {
+    position: absolute;
+    inset: 0;
+    // backdrop-filter: blur(5px);
+    display: grid;
+    place-items: center;
   }
 }

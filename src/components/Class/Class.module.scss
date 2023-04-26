@@ -1,0 +1,21 @@
+.wrapper {
+    width: min(1024px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2rem;
+    padding: 1rem 0;
+    .title {
+        grid-column: 1/-1;
+        height: 5rem;
+        border-radius: 0.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 3rem;
+        font-size: 3rem;
+    }
+    .Table{
+        grid-column: 1/-1;
+    }
+}
