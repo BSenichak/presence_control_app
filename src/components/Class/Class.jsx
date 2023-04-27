@@ -44,6 +44,7 @@ export const Class = (props) => {
                   <TableCell>{student.name}</TableCell>
                   {props.data.mounth[0].pressent.map(el=><TableCell>{JSON.stringify(el)}</TableCell>)}
                 </TableRow>
+                
               ))}
             </Table>
           </TableContainer>
